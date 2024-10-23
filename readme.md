@@ -47,3 +47,28 @@ git checkout master
 git switch -b new-branch
 ```
 
+## If You want Connect your local machine or server with github using SSH
+
+### 1. Generate SSH key on server or local machine
+```shell
+ssh-keygen
+```
+### 2. It will generate Two file private and public key  in same location 
+```sh
+# this is Private key
+~/.ssh/id_rsa
+# This is Public key
+~/.ssh/id_rsa.pub
+```
+### 3. Copy public key and paste on the github or any where where you want to connect
+```sh
+cat ~/.ssh/id_rsa.pub
+```
+### 4 .Now your server or local machine is connect to Github  
+ - Add the SSH key to your GitHub account:
+ - Log in to your GitHub account.
+ - Go to Settings > SSH and GPG keys > New SSH key.
+ - Paste your public key into the "Key" field and give it a title.
+ - Click Add SSH key.
+
+### NOW SETUP YOUR SERVER SET JENKINS  WE WILL SEN IN 
