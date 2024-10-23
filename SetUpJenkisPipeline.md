@@ -24,9 +24,9 @@
 
 ## 5. Enable Continuous Integration
 
-- Install the GitHub Integration Plugin from Jenkins Plugin Manager.
-- Go to your GitHub repository settings, and under the Webhooks section, add a new webhook with the following URL:
-
+- Enable **GitHub hook trigger for GITScm polling** in the Build Triggers section.
+- Install the **GitHub Integration Plugin** from the Jenkins Plugin Manager.
+- Go to your GitHub repository settings, and under the **Webhooks** section, add a new webhook with the following URL:
 ```sh 
 http://<jenkins-server-ip>:<port>/github-webhook/
 ```
