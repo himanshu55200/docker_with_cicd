@@ -4,5 +4,6 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
+
 def hello_view(request):
-    return HttpResponse("Hello! This is my first CICD")
+    return HttpResponse("Hello! This is my first CICD, Check It is working")
