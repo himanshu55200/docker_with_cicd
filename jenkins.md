@@ -18,7 +18,7 @@ Login Your Server
  sudo apt-get update -y
  ```
 
-## [Install Jenkins](https://www.jenkins.io/doc/book/installing/)
+# [Install Jenkins](https://www.jenkins.io/doc/book/installing/)
 
 ### 1. First Install JAVA on the Server
 
@@ -80,6 +80,71 @@ sudo systemctl status jenkins
 Jenkins will be available on port 8080 of your EC2 instance's public IP address. To access Jenkins, open a web browser
 and navigate to `http://[your-ec2-instance-public-ip]:8080`. You will be prompted to enter an initial admin password,
 which can be found in the file `/var/lib/jenkins/secrets/initialAdminPassword` on your EC2 instance.
+
+# Unable to Access Jenkins?
+
+- If you're unable to access Jenkins, it likely means that port 8080 is blocked by the firewall (security group)
+  settings. You'll need to add a firewall rule to allow traffic on port 8080.
+
+## Adding a Firewall Rule for Jenkins on EC2 (AWS)
+
+To allow traffic on port 8080 in AWS EC2, follow these steps:
+
+### 1. Navigate to the EC2 Dashboard:
+
+- Go to the EC2 console in AWS.
+
+### 2. Select Your Instance:
+
+- In the Instances section, find and select your EC2 instance running Jenkins.
+
+### 3. Security Group:
+
+- Under the Description tab, find the Security groups and click on the associated security group link.
+
+### 4. Edit Inbound Rules:
+
+- In the Security Group details, click on Inbound rules and then click Edit inbound rules.
+
+### 5. Add a Rule for Port 8080:
+
+- Type: Custom TCP
+- Port range: 8080
+- Source: Select Anywhere (or a specific IP range) to allow access from the public internet.
+
+### 6. Save the Rules:
+
+- Click Save rules to apply the changes.
+  Now, your EC2 instance should allow access to Jenkins on port 8080.
+
+## Adding a Firewall Rule for Jenkins on GCP
+
+- To allow traffic on port 8080 in Google Cloud Platform (GCP), follow these steps:
+
+### 1 .Navigate to the VPC Network:
+
+- In the Google Cloud Console, go to VPC network.
+
+### 2. Firewall Rules:
+
+- Click on Firewall rules under VPC network.
+
+### 3. Create a Firewall Rule:
+
+- Click Create firewall rule.
+
+### 4. Configure the Firewall Rule:
+
+- Name: Give your rule a meaningful name (e.g., allow-jenkins-8080).
+- Targets: Select All instances in the network or specify the target instance based on tags.
+- Source IP ranges: Enter 0.0.0.0/0 to allow traffic from anywhere, or specify an IP range.
+- Protocols and Ports: Select Specified protocols and ports, then check TCP and enter 8080.
+
+### 5. Create the Rule:
+
+- Click Create to add the firewall rule.
+
+Now, your GCP instance should allow access to Jenkins on port 8080.
 
 ```sh
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
@@ -172,7 +237,9 @@ sudo docker info
 ```sh
 sudo usermod -aG docker jenkins
 ```
+
 After that Restart Jenkins
+
 ```sh
 sudo systemctl restart jenkins
 
